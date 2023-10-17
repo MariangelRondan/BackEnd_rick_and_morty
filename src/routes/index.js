@@ -4,6 +4,7 @@ const postFav = require("../controller/postFav");
 const deleteFav = require("../controller/deleteFav");
 const express = require("express");
 const postUser = require("../controller/postUser");
+const newUser = require("../controller/newUser");
 
 const router = express.Router();
 
@@ -11,10 +12,12 @@ router.get("/character/:id", getCharById);
 
 router.get("/login", login);
 
-router.post("/login", postUser);
+// router.post("/login", postUser);
 
 router.post("/fav", postFav);
 
 router.delete("/fav/:id", deleteFav);
+
+router.post("/register", postUser);
 
 module.exports = router;
