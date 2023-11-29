@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "start": "nodemon ./src/index.js"
+    "server": "nodemon index.js",
+    "start": "concurrently \"npm run server\" \"npm run api\""
+
   },
   "repository": {
     "type": "git",
