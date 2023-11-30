@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "server": "nodemon index.js",
-    "api": "curl https://rickandmortyapi.com/api/character/",
-    "start": "concurrently \"npm run server\" \"npm run api\""
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-const server = require("./src/App");
+const server = require("./src/App.js");
 const { conn } = require("./src/DB_connection");
 const dotenv = require("dotenv");
 dotenv.config();
