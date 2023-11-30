@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --detectOpenHandles",
     "server": "nodemon index.js",
+    "api": "curl https://rickandmortyapi.com/api/character/",
     "start": "concurrently \"npm run server\" \"npm run api\""
-
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "pg": "^8.11.3",
     "sequelize": "^6.33.0",
     "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
