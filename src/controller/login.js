@@ -1,6 +1,6 @@
 const { User } = require("../DB_connection");
 
-login = async (req, res) => {
+const login = async (req, res) => {
   try {
     const { email, password } = req.query;
 
