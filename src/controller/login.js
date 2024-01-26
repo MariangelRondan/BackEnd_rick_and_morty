@@ -13,13 +13,11 @@ const login = async (req, res) => {
     });
     if (!user) return res.status(404).send("User not found");
 
-    if (user.password === password) {
-      return res.status(200).json({ access: true });
-    } else {
-      return res.status(403).send("Incorrect password");
-    }
+    return user.password === password
+      ? res.status(200).json({ access: true })
+      : res.status(403).send("Incorrect password");
   } catch (error) {
-    return res.status(500).json({ error: error.menssage });
+    return res.status(500).json({ error: error.message });
   }
 };
 

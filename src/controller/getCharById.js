@@ -1,15 +1,14 @@
-const dotenv = require("dotenv");
-dotenv.config();
+// const dotenv = require("dotenv");
+// dotenv.config();
 const axios = require("axios");
 
-const URL = process.env.URL_API;
-
-//con ASYN AWAIT
+// const URL = process.env.URL_API;
+const URL = `https://rickandmortyapi.com/api/character/`;
 
 const getCharById = async (req, res) => {
-  const { id } = req.params; //req.params es un objeto
-
   try {
+    const { id } = req.params; //req.params es un objeto
+
     const { data } = await axios(URL + id);
     const { name, gender, species, origin, image, status } = data;
     const char = { name, gender, species, origin, image, status, id };

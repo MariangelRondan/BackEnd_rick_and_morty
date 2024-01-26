@@ -1,13 +1,14 @@
-const { Favorite } = require("../DB_connection"); //por qué se importa desde db en vez de desde models?
+const { Favorite, User } = require("../DB_connection");
 
 const postFav = async (req, res) => {
   try {
-    const { id, name, origin, status, image, species, gender } = req.body;
-    if (!id || !name || !origin || !status || !image || !species || !gender) {
-      return res.status(401).send("Faltan datos");
-    }
-    await Favorite.findOrCreate({
-      where: {
+    const { id, name, origin, status, image, species, gender, user } = req.body;
+
+    const usuario = await User.findOne({ where: { email: user } });
+
+    if (usuario) {
+      // Crear el nuevo favorito
+      const createFavPromise = await Favorite.create({
         id,
         name,
         origin,
@@ -15,12 +16,25 @@ const postFav = async (req, res) => {
         image,
         species,
         gender,
-      },
-    });
-    const favorites = await Favorite.findAll();
-    return res.status(200).json(favorites);
+      });
+
+      // Asociar el favorito al usuario
+      await usuario.addFavorite(createFavPromise);
+
+      // Obtener todos los favoritos después de la operación
+      const favAll = await Favorite.findAll();
+
+      return res.status(200).json(favAll);
+    } else {
+      return res.status(404).json({ error: "Usuario no encontrado." });
+    }
+    console.log("Fin del endpoint /rickandmorty/fav");
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error en la creación de favorito:", error);
+
+    // Realiza un rollback de la transacción si es necesario
+
+    return res.status(500).json({ error: error.message });
   }
 };
 
