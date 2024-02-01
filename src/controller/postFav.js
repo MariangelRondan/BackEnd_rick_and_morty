@@ -28,7 +28,6 @@ const postFav = async (req, res) => {
     } else {
       return res.status(404).json({ error: "Usuario no encontrado." });
     }
-    console.log("Fin del endpoint /rickandmorty/fav");
   } catch (error) {
     console.error("Error en la creación de favorito:", error);
 

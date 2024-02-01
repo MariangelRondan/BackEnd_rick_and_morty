@@ -1,4 +1,4 @@
-const { Favorite, User } = require("../DB_connection"); //por qué se importa desde db en vez de desde models?
+const { Favorite, User } = require("../DB_connection"); 
 
 const deleteFav = async (req, res) => {
   const { id } = req.params;
